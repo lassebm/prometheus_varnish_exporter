@@ -1329,7 +1329,7 @@
               "step": 240
             },
             {
-              "expr": "sum(varnish_sma_g_bytes{type=\"s0\", instance=~\"^($varnish_instance).*\"})",
+              "expr": "(sum(varnish_sma_g_bytes{type=\"s0\", instance=~\"^($varnish_instance).*\"}) or vector(0))+(sum(varnish_buddy_g_bytes{type=\"s0\", instance=~\"^($varnish_instance).*\"}) or vector(0))",
               "format": "time_series",
               "intervalFactor": 2,
               "legendFormat": "mem used",
