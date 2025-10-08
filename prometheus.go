@@ -135,6 +135,9 @@ var (
 		group{name: "main", prefixes: []string{
 			"main.",
 		}},
+		group{name: "buddy", prefixes: []string{
+			"buddy.",
+		}},
 	}
 )
 
@@ -173,27 +176,40 @@ var (
 		"varnish_lck_locks":   "varnish_lock_operations",
 	}
 	fqIdentifiers = map[string]string{
-		"varnish_lock_collisions": "target",
-		"varnish_lock_created":    "target",
-		"varnish_lock_destroyed":  "target",
-		"varnish_lock_operations": "target",
-		"varnish_sma_c_bytes":     "type",
-		"varnish_sma_c_fail":      "type",
-		"varnish_sma_c_freed":     "type",
-		"varnish_sma_c_req":       "type",
-		"varnish_sma_g_alloc":     "type",
-		"varnish_sma_g_bytes":     "type",
-		"varnish_sma_g_space":     "type",
-		"varnish_smf_c_bytes":     "type",
-		"varnish_smf_c_fail":      "type",
-		"varnish_smf_c_freed":     "type",
-		"varnish_smf_c_req":       "type",
-		"varnish_smf_g_alloc":     "type",
-		"varnish_smf_g_bytes":     "type",
-		"varnish_smf_g_smf_frag":  "type",
-		"varnish_smf_g_smf_large": "type",
-		"varnish_smf_g_smf":       "type",
-		"varnish_smf_g_space":     "type",
+		"varnish_lock_collisions":                  "target",
+		"varnish_lock_created":                     "target",
+		"varnish_lock_destroyed":                   "target",
+		"varnish_lock_operations":                  "target",
+		"varnish_sma_c_bytes":                      "type",
+		"varnish_sma_c_fail":                       "type",
+		"varnish_sma_c_freed":                      "type",
+		"varnish_sma_c_req":                        "type",
+		"varnish_sma_g_alloc":                      "type",
+		"varnish_sma_g_bytes":                      "type",
+		"varnish_sma_g_space":                      "type",
+		"varnish_smf_c_bytes":                      "type",
+		"varnish_smf_c_fail":                       "type",
+		"varnish_smf_c_freed":                      "type",
+		"varnish_smf_c_req":                        "type",
+		"varnish_smf_g_alloc":                      "type",
+		"varnish_smf_g_bytes":                      "type",
+		"varnish_smf_g_smf_frag":                   "type",
+		"varnish_smf_g_smf_large":                  "type",
+		"varnish_smf_g_smf":                        "type",
+		"varnish_smf_g_space":                      "type",
+		"varnish_buddy_c_req":                      "type",
+		"varnish_buddy_c_fail":                     "type",
+		"varnish_buddy_c_bytes":                    "type",
+		"varnish_buddy_c_freed":                    "type",
+		"varnish_buddy_c_trim":                     "type",
+		"varnish_buddy_c_trimmed":                  "type",
+		"varnish_buddy_c_lru_wakeups":              "type",
+		"varnish_buddy_c_lru_reserve_used_bytes":   "type",
+		"varnish_buddy_c_lru_nuke_fill_reserve":    "type",
+		"varnish_buddy_c_lru_nuke_reserve_drained": "type",
+		"varnish_buddy_g_alloc":                    "type",
+		"varnish_buddy_g_bytes":                    "type",
+		"varnish_buddy_g_space":                    "type",
 	}
 )
 
@@ -229,7 +245,7 @@ func cleanBackendName(name string) string {
 	if strings.HasPrefix(name, "reload_") {
 		dot := strings.Index(name, ".")
 		if dot != -1 {
-			name = name[dot + 1:]
+			name = name[dot+1:]
 		}
 	}
 
